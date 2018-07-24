@@ -1,0 +1,17 @@
+[Unit]
+Description=picamera streaming through netcat socket
+Requires=netcat.socket
+After=netcat.socket
+Wants=netcat.socket
+
+[Service]
+TimeoutStartSec=infinity
+Sockets=netcat.socket
+StandardOutput=fd:netcat.socket
+StandardError=journal
+ExecStart=/usr/bin/python3 /home/pi/picamera/cameraStreamBash.py
+Restart=on-abnormal
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

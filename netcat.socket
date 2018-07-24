@@ -1,0 +1,10 @@
+[Unit]
+Description=netcat.service reads from this
+
+[Socket]
+ListenFIFO=/run/netcat.sock
+SocketMode=0600
+RemoveOnStop=false
+
+[Install]
+WantedBy=multi-user.target

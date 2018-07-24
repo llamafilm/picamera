@@ -1,0 +1,16 @@
+[Unit]
+Description=netcat process
+Requires=netcat.socket
+After=netcat.socket
+
+[Service]
+TimeoutStartSec=infinity
+Sockets=netcat.socket
+StandardInput=fd:netcat.socket
+StandardError=journal
+ExecStart=/bin/nc -lkv4 8080
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
